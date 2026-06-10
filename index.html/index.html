@@ -6,8 +6,11 @@
   <title>Ticket Demo</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- QR library MUST be in head or before script.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <body>
 
 <div class="top">
@@ -40,37 +43,23 @@
 
   <div class="qr-wrapper">
 
-    <img src="qr.png" class="qr">
+    <!-- QR WILL BE GENERATED HERE -->
+    <div id="qrcode"></div>
 
     <div class="clock-area">
-
-      <span id="clock">
-        00:00:00
-      </span>
-
+      <span id="clock">00:00:00</span>
       <div class="spinner"></div>
-
     </div>
 
   </div>
 
   <div class="dates">
 
-    <div class="label">
-      Start Date/Time
-    </div>
+    <div class="label">Start Date/Time</div>
+    <div class="value">10/06/2026, 22:30</div>
 
-    <div class="value">
-      10/06/2026, 22:30
-    </div>
-
-    <div class="label">
-      End Date/Time
-    </div>
-
-    <div class="value">
-      11/06/2026, 04:00
-    </div>
+    <div class="label">End Date/Time</div>
+    <div class="value">11/06/2026, 04:00</div>
 
   </div>
 
@@ -86,3 +75,31 @@
 
 </body>
 </html>
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toTimeString().split(" ")[0];
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+
+// QR CODE DATA
+const ticketData = {
+  event: "Last Night in Luff",
+  name: "Zack Henrick",
+  id: "F511345",
+  start: "10/06/2026 22:30",
+  end: "11/06/2026 04:00"
+};
+
+const qrText = JSON.stringify(ticketData);
+
+// generate QR
+new QRCode(document.getElementById("qrcode"), {
+  text: qrText,
+  width: 180,
+  height: 180
+});
