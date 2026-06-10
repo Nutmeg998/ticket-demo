@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ticket Demo</title>
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- QR library -->
+  <!-- QR library (MUST load before script.js) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
@@ -29,10 +30,7 @@
 
     <div class="name-row">
       <span class="name">Zack Henrick</span>
-
-      <span class="student">
-        Student
-      </span>
+      <span class="student">Student</span>
     </div>
 
     <div class="ticket-id">
@@ -43,7 +41,7 @@
 
   <div class="qr-wrapper">
 
-    <!-- QR gets generated here -->
+    <!-- QR CODE WILL APPEAR HERE -->
     <div id="qrcode"></div>
 
     <div class="clock-area">
@@ -71,6 +69,7 @@
   <div>👤</div>
 </div>
 
+<!-- YOUR JS MUST LOAD LAST -->
 <script src="script.js"></script>
 
 </body>
