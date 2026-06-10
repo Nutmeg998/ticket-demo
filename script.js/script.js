@@ -1,20 +1,29 @@
+// live clock
 function updateClock() {
-
-    const now = new Date();
-
-    const h =
-      String(now.getHours()).padStart(2,"0");
-
-    const m =
-      String(now.getMinutes()).padStart(2,"0");
-
-    const s =
-      String(now.getSeconds()).padStart(2,"0");
-
-    document.getElementById("clock")
-      .textContent = `${h}:${m}:${s}`;
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toTimeString().split(" ")[0];
 }
 
+setInterval(updateClock, 1000);
 updateClock();
 
-setInterval(updateClock,1000);
+
+// ticket data to encode in QR
+const ticketData = {
+  event: "Last Night in Luff",
+  name: "Zack Henrick",
+  id: "F511345",
+  start: "10/06/2026 22:30",
+  end: "11/06/2026 04:00"
+};
+
+// convert to QR string
+const qrText = JSON.stringify(ticketData);
+
+// generate QR code
+new QRCode(document.getElementById("qrcode"), {
+  text: qrText,
+  width: 180,
+  height: 180
+});
