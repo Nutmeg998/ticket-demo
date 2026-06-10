@@ -1,51 +1,39 @@
-console.log("script loaded");
+console.log("SCRIPT LOADED");
 
 // clock
 function updateClock() {
-  const clock = document.getElementById("clock");
-
-  if (!clock) {
-    console.error("Clock element not found");
-    return;
-  }
+  const el = document.getElementById("clock");
+  if (!el) return;
 
   const now = new Date();
-  clock.textContent = now.toTimeString().split(" ")[0];
+  el.textContent = now.toTimeString().split(" ")[0];
 }
 
 setInterval(updateClock, 1000);
 updateClock();
 
 // QR
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
 
-  const qrContainer = document.getElementById("qrcode");
+  console.log("PAGE LOADED");
 
-  if (!qrContainer) {
-    console.error("QR container not found");
+  const container = document.getElementById("qrcode");
+
+  if (!container) {
+    console.error("QR container missing");
     return;
   }
-
-  const ticketData = {
-    event: "Last Night in Luff",
-    name: "Zack Henrick",
-    id: "F511345",
-    start: "10/06/2026 22:30",
-    end: "11/06/2026 04:00"
-  };
-
-  const qrText = JSON.stringify(ticketData);
 
   if (typeof QRCode === "undefined") {
-    console.error("QRCode library not loaded");
+    console.error("QR library NOT loaded");
     return;
   }
 
-  new QRCode(qrContainer, {
-    text: qrText,
+  new QRCode(container, {
+    text: "Test Ticket F511345",
     width: 180,
     height: 180
   });
 
-  console.log("QR generated");
+  console.log("QR CREATED");
 });
